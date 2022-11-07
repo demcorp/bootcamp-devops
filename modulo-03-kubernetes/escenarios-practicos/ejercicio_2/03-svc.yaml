@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: ejercicio
+spec:
+  selector:
+    # Se cambia el selector para que busque los pods back -> backend  (kubectl get endpoints -n ejercicio)
+    app: backend
+  ports:
+  - port: 80
+    # Se cambia el puerto para que coincida con el de los pods 8080 -> 80 (kubectl get pods backend-xxxxxxxx-zzzz -n ejercicio -o yaml)
+    targetPort: 80

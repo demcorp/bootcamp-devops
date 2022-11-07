@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myingress
+  namespace: ejercicio
+  labels:
+    name: myingress
+spec:
+  rules:
+  - host: backend.mine.nu
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: backend
+            port: 
+              number: 80
