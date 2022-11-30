@@ -28,13 +28,13 @@ $ kubectl get pods -n ejercicio1
 NAME                        READY   STATUS    RESTARTS   AGE
 todo-app-5d7c95cc85-lv4rm   1/1     Running   0          30s
 
-$ kubectl get endpoints -n ejercicio1
-NAME       ENDPOINTS         AGE
-todo-app   172.17.0.7:3000   5m55s
-
 $ kubectl get svc -n ejercicio1
 NAME       TYPE           CLUSTER-IP     EXTERNAL-IP    PORT(S)          AGE
 todo-app   LoadBalancer   10.102.79.61   10.102.79.61   8080:30272/TCP   12m
+
+$ kubectl get endpoints -n ejercicio1
+NAME       ENDPOINTS         AGE
+todo-app   172.17.0.7:3000   5m55s
 ```
 
 Al conectar, desde un navegador, a la URL http://10.102.79.61:8080/ aparece la aplicación correctamente:
@@ -63,8 +63,8 @@ Para poder completar el ejercicio y lanzar la aplicación en *minikube* se han c
 - `01-monolith/08-deployment.yaml`
 - `01-monolith/09-serviceapp.yaml`
 
-  *NOTA*: Se ha creado el *namespace* **ejercicio2** para la ejecución de los ficheros
-  *NOTA2*: Se ha usado la DNS del servicio de data (svc-todo-data.ejercicio2.svc.cluster.local) para DB_HOST
+  *NOTA*: Se ha creado el *namespace* **ejercicio2** para la ejecución de los ficheros<br>
+  *NOTA2*: Se ha usado la DNS del servicio de data (`svc-todo-data.ejercicio2.svc.cluster.local`) para **DB_HOST**
 
 Primero se han aplicado, con *kubectl*, los ficheros pertenecientes a la base de datos:
 
@@ -88,13 +88,13 @@ $ kubectl get pvc -n ejercicio2
 NAME    STATUS   VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS      AGE
 pvcpg   Bound    pvpg     1Gi        RWO            storagepostgres   37s
 
-$ kubectl get svc -n ejercicio2
-NAME            TYPE           CLUSTER-IP       EXTERNAL-IP    PORT(S)          AGE
-svc-todo-data   ClusterIP      10.109.108.157   <none>         5432/TCP         56s
-
 $ kubectl get pods -n ejercicio2
 NAME                       READY   STATUS    RESTARTS   AGE
 todo-data-0                1/1     Running   0          78s
+
+$ kubectl get svc -n ejercicio2
+NAME            TYPE           CLUSTER-IP       EXTERNAL-IP    PORT(S)          AGE
+svc-todo-data   ClusterIP      10.109.108.157   <none>         5432/TCP         56s
 
 $ kubectl get endpoints -n ejercicio2
 NAME            ENDPOINTS         AGE
