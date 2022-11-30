@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: todo-data
+  namespace: ejercicio2
+spec:
+  selector:
+    matchLabels:
+      app: todo-data
+  serviceName: svc-todo-data
+  #replicas: 2
+  template:
+    metadata:
+      labels:
+        app: todo-data
+    spec:
+      volumes:
+         - name: data
+           persistentVolumeClaim:
+             claimName: pvcpg
+      containers:
+      - name: todo-data
+        image: postgres:10.4
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/postgresql/data
+        envFrom:
+          - configMapRef:
+              name: cm-todo-data

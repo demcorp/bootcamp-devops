@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: distributed
+  namespace: ejercicio3
+  labels:
+    name: distributed
+spec:
+  rules:
+  - host: lc-todo.edu
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: svc-todo-front
+            port: 
+              number: 80
+      - pathType: Prefix
+        path: "/api"
+        backend:
+          service:
+            name: svc-todo-api
+            port: 
+              number: 3000

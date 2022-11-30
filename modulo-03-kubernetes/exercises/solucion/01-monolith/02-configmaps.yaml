@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-todo-data
+  namespace: ejercicio2
+data:
+  POSTGRES_USER: "postgres"
+  POSTGRES_PASSWORD: "postgres123"
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-todo-app
+  namespace: ejercicio2
+data:
+  NODE_ENV: "production"
+  PORT: "3000"
+  DB_HOST: "svc-todo-data.ejercicio2.svc.cluster.local"
+  DB_USER: "postgres"
+  DB_PASSWORD: "postgres123"
+  DB_PORT: "5432"
+  DB_NAME: "todos_db"
+  DB_VERSION: "10.4"
